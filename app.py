@@ -19,8 +19,6 @@ def home():
 @app.route('/predict', methods=['POST'])
 def predict():
     diab = pd.read_csv("data/diabetes.csv")
-    outcome = diab['Outcome']
-    data = diab[diab.columns[:8]]
     train, test = train_test_split(
         diab, test_size=0.25, random_state=0, stratify=diab['Outcome'])
     train_X = train[train.columns[:8]]
@@ -51,4 +49,4 @@ def predict():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(port=5000, debug=True)
